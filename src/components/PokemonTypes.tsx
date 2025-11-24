@@ -1,6 +1,7 @@
 "use client";
 
 import { usePokemonTypes } from "@/queries/usePokemonTypes";
+import { Chip } from "@mui/material";
 
 export function PokemonTypes() {
   const { isPending, isError, data, error } = usePokemonTypes();
@@ -10,8 +11,10 @@ export function PokemonTypes() {
     <ul>
       {data.map((pokemonType) => (
         <li key={pokemonType.name}>
-          <div>{pokemonType.name}</div>
-          <div>{pokemonType.color}</div>
+          <Chip
+            label={pokemonType.name}
+            style={{ backgroundColor: pokemonType.color }}
+          />
         </li>
       ))}
     </ul>

@@ -1,5 +1,6 @@
 import { usePokemonDetails } from "@/queries/usePokemonDetails";
 import { typeColors } from "@/typeColors";
+import { Chip } from "@mui/material";
 import Image from "next/image";
 
 export function PokemonCard(props: Props) {
@@ -21,6 +22,15 @@ export function PokemonCard(props: Props) {
       <Image src={pokemon.image} alt={pokemon.name} width={100} height={100} />
       <div className="font-semibold text-xl">{pokemon.name}</div>
       <div>{pokemon.pokedexIndex}</div>
+      <ul className="flex gap-2">
+        {pokemon.types.map((type) => (
+          <Chip
+            className="text-white font-semibold capitalize"
+            key={type}
+            label={type}
+          />
+        ))}
+      </ul>
     </div>
   );
 }

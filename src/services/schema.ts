@@ -56,8 +56,9 @@ export const pokemonListResponseSchema = z
     hasNextPage: data.next !== null,
     pokemons: data.results.map((pokemon) => {
       const parts = pokemon.url.split("/");
+      const id = Number(parts[parts.length - 2]);
       return {
-        id: parts[parts.length - 1],
+        id,
       };
     }),
   }));

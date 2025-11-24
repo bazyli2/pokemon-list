@@ -11,5 +11,9 @@ export async function fetchPokemonList(offset: number, limit: number) {
     `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`,
   );
   const json = await response.json();
-  return pokemonListResponseSchema.parse(json);
+  return {
+    ...pokemonListResponseSchema.parse(json),
+    offset: offset,
+    limit: limit,
+  };
 }

@@ -1,3 +1,4 @@
+import { PokemonList } from "@/components/PokemonList";
 import { PokemonTypes } from "@/components/PokemonTypes";
 
 export default function Home() {
@@ -5,6 +6,7 @@ export default function Home() {
     <div>
       bla
       <PokemonTypes />
+      <PokemonList />
     </div>
   );
 }

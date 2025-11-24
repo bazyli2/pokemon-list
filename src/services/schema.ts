@@ -31,7 +31,12 @@ export const typesResponseSchema = z
   })
   .transform((data) =>
     data.results
-      .filter((type) => type.name !== "unknown")
+      .filter(
+        (type) =>
+          type.name !== "unknown" &&
+          type.name !== "shadow" &&
+          type.name !== "stellar",
+      )
       .map((type) => ({
         name: type.name,
         color: typeColors[type.name as keyof typeof typeColors],

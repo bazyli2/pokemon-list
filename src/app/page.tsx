@@ -1,3 +1,10 @@
+import { PokemonTypes } from "@/components/PokemonTypes";
+
 export default function Home() {
-  return <div>bla</div>;
+  return (
+    <div>
+      bla
+      <PokemonTypes />
+    </div>
+  );
 }

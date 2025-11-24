@@ -42,3 +42,22 @@ export const typesResponseSchema = z
         color: typeColors[type.name as keyof typeof typeColors],
       })),
   );
+
+export const pokemonListResponseSchema = z
+  .object({
+    next: z.union([z.string(), z.null()]),
+    results: z.array(
+      z.object({
+        url: z.string(),
+      }),
+    ),
+  })
+  .transform((data) => ({
+    hasNextPage: data.next !== null,
+    pokemons: data.results.map((pokemon) => {
+      const parts = pokemon.url.split("/");
+      return {
+        id: parts[parts.length - 1],
+      };
+    }),
+  }));

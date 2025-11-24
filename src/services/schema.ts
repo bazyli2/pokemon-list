@@ -62,3 +62,27 @@ export const pokemonListResponseSchema = z
       };
     }),
   }));
+
+export const pokemonDetailsSchema = z
+  .object({
+    sprites: z.object({
+      other: z.object({
+        "official-artwork": z.object({
+          front_default: z.string(),
+        }),
+      }),
+    }),
+    species: z.object({
+      name: z.string(),
+    }),
+    types: z.array(
+      z.object({
+        type: z.object({ name: z.string() }),
+      }),
+    ),
+  })
+  .transform((data) => ({
+    image: data.sprites.other["official-artwork"].front_default,
+    name: data.species.name,
+    types: data.types.map((type) => type.type.name),
+  }));

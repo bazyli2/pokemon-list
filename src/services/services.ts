@@ -1,4 +1,8 @@
-import { pokemonListResponseSchema, typesResponseSchema } from "./schema";
+import {
+  pokemonDetailsSchema,
+  pokemonListResponseSchema,
+  typesResponseSchema,
+} from "./schema";
 
 export async function fetchPokemonTypes() {
   const response = await fetch("https://pokeapi.co/api/v2/type?limit=100");
@@ -16,4 +20,10 @@ export async function fetchPokemonList(offset: number, limit: number) {
     offset: offset,
     limit: limit,
   };
+}
+
+export async function fetchPokemonDetails(id: number) {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  const json = await response.json();
+  return pokemonDetailsSchema.parse(json);
 }

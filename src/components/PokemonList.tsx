@@ -2,10 +2,11 @@
 
 import { usePokemonList } from "@/queries/usePokemonList";
 import { Fragment } from "react/jsx-runtime";
+import { PokemonCard } from "./PokemonCard";
 
 export function PokemonList() {
   const { isPending, isError, data, error, fetchNextPage, hasNextPage } =
-    usePokemonList(1200);
+    usePokemonList(20);
   if (isPending) return <div>loading...</div>;
   if (isError) return <div>{error.message}</div>;
   return (
@@ -13,7 +14,7 @@ export function PokemonList() {
       {data.pages.map((group, i) => (
         <Fragment key={i}>
           {group.pokemons.map((pokemon) => (
-            <div key={pokemon.id}>{pokemon.id}</div>
+            <PokemonCard key={pokemon.id} id={pokemon.id} />
           ))}
         </Fragment>
       ))}
